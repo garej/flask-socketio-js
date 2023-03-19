@@ -4,6 +4,8 @@ from random import random
 from threading import Lock
 from datetime import datetime
 
+#import eventlet
+
 """
 Background Thread
 """
@@ -11,7 +13,7 @@ thread = None
 thread_lock = Lock()
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'donsky!'
+app.config['SECRET_KEY'] = 'someSecretKey'
 socketio = SocketIO(app, cors_allowed_origins='*')
 
 """
@@ -28,7 +30,10 @@ def background_thread():
     print("Generating random sensor values")
     while True:
         dummy_sensor_value = round(random() * 100, 3)
-        socketio.emit('updateSensorData', {'value': dummy_sensor_value, "date": get_current_datetime()})
+
+        socketio.emit('updateSensorData', {'value': dummy_sensor_value, 
+                                           "date": get_current_datetime()})
+
         socketio.sleep(1)
 
 """
@@ -43,8 +48,7 @@ Decorator for connect
 """
 @socketio.on('connect')
 def connect():
-    global thread
-    print('Client connected')
+    print('Client connected', request.sid)
 
     global thread
     with thread_lock:
