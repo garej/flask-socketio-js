@@ -2,7 +2,7 @@
 # Display Real time sensor values using Python, Flask and Flask-SocketIO  
 
 
-![Real Time Updates Using Python, Flask and Websockets](https://user-images.githubusercontent.com/69466026/190352777-6abb0c96-8ecb-4e04-b817-ce27dabd66cf.PNG)
+![Real Time Updates Using Python, Flask and Websockets](https://github.com/garej/flask-socketio-js/blob/main/sensor.gif)
 
 ### Steps on how to run:
 
